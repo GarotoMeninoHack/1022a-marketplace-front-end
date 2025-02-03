@@ -1,107 +1,153 @@
-
-
-
-
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  display: flex;
-  justify-content: center;
-}
-
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  --primary-color: #c452ea;
+  --secondary-color: #121212;
+  --form-bg: #181818;
+  --input-bg: #252525;
+  --border-color: #ffaa00;
+  --text-color: #ffffff;
+  --text-muted: #b3b3b3;
+  --highlight-color: #e7a32e;
+  --shadow-color: rgba(0, 0, 0, 0.7);
+  --border-radius: 8px;
+  --font-family: 'Poppins', sans-serif;
 }
 
 body {
-  margin: 0; /* Remove margens do body */
-  padding: 0; /* Remove padding do body */
-  /* outros estilos... */
-  width: 100vw;
-  box-sizing: border-box;
+  margin: 0;
+  font-family: var(--font-family);
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  text-align: center;
 }
 
+main {
+  width: 90%;
+  max-width: 1500px;
+  margin: 20px auto;
+  background: var(--form-bg);
+  border-radius: var(--border-radius);
+  box-shadow: 0 6px 15px var(--shadow-color);
+  padding: 20px;
+  text-align: center;
+}
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: 2em;
+  margin-bottom: 15px;
+  color: var(--primary-color);
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+/* Formulário */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+form > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+form label {
   font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: rgb(163, 11, 11);
+  color: var(--text-muted);
+}
+
+form input,
+form textarea,
+form select {
+  width: 100%;
+  padding: 10px;
+  background: var(--input-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  color: var(--text-color);
+  font-size: 0.9em;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+form input:focus,
+form textarea:focus,
+form select:focus {
+  border: 1px solid var(--primary-color);
+  box-shadow: 0 0 8px var(--highlight-color);
+}
+
+/* Botão Cadastrar */
+form button {
+  width: 100%;
+  padding: 10px;
+  font-size: 0.9em;
+  font-weight: bold;
+  color: var(--text-color);
+  background: var(--primary-color);
+  border: none;
+  border-radius: var(--border-radius);
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;}
+form button:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 12px var(--shadow-color);
 }
 
-form{
+form button:focus {
+  outline: none;
+  box-shadow: 0 0 8px var(--highlight-color);
+}
+
+/* Botões de Ação */
+.action-buttons {
   display: flex;
-  flex-direction: column;
-  gap: 1em;
-  width: 70vw;
-  border: 1px solid #d0d0d0;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  padding: 40px;
-  border-radius: 5px;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 12px;
 }
 
-form>div{
-  display: flex;
-  flex-direction: column;
-  gap: 0.5em;
-}
-form>div>input{
-  padding: 10px 5px;
-  border-radius: 5px;
-  border: 1px solid #d0d0d0;
-}
-
-
-.imagem-produto-reduzida{
-  width: 60px;
-  height: auto;
+.action-buttons button {
+  padding: 8px 18px;
+  font-size: 0.9em;
+  font-weight: bold;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 6px 12px var(--shadow-color);
+  border: none;
 }
 
-div{
-  box-sizing: border-box;
+.action-buttons .edit-button {
+  background-color: #1e90ff;
+  color: var(--text-color);
+}
+
+.action-buttons .delete-button {
+  background-color: #ff4d4f;
+  color: var(--text-color);
+}
+
+.action-buttons button:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 16px var(--shadow-color);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  form {
+    gap: 10px;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .action-buttons button {
+    width: 100%;
+  }
 }

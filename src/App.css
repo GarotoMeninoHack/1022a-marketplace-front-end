@@ -1,272 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap');
 
-
-#root {
-  margin: 0px;
-  padding: 0px;
+:root {
+  --primary-color: #b9731d; /* Verde principal */
+  --secondary-color: #121212; /* Fundo principal */
+  --card-bg: #181818; /* Fundo dos cards */
+  --text-color: #ffffff; /* Texto principal */
+  --text-muted: #b3b3b3; /* Texto secundário */
+  --highlight-color: #d7871e; /* Verde de destaque */
+  --shadow-color: rgba(0, 0, 0, 0.7);
+  --border-radius: 12px;
+  --font-family: 'Poppins', sans-serif;
 }
 
-.site-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 2rem;
-  background-color: #333;
-  color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 0;
-  width: 100%;
-  margin-bottom: 1.5rem;
-  box-sizing: border-box;
-}
-
-.logo img {
-  height: 40px;
-  transition: transform 0.3s;
-}
-
-.logo img:hover {
-  transform: scale(1.1);
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.navigation ul {
-  display: flex;
-  gap: 1.5rem;
-  list-style: none;
+body {
   margin: 0;
-  padding: 0;
-}
-
-.navigation a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.2s;
-}
-
-.navigation a:hover {
-  color: #ff6600;
-}
-
-.header-actions .login-button {
-  padding: 0.8rem;
-  background-color: #ff6600;
-  color: #fff;
-  font-weight: bold;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.header-actions .login-button:hover {
-  background-color: #e65c00;
-}
-
-@media (max-width: 768px) {
-  .site-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .navigation ul {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .navigation li {
-    padding: 0.5rem 0;
-  }
-
-  .header-actions .login-button {
-    width: 100%;
-    margin-top: 1rem;
-  }
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-.produtos-container {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  padding: 1rem;
-}
-
-.produtos-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-}
-
-.titulo-produto {
-  font-size: 60px;
-  color: #333;
-  margin-bottom: 1rem;
+  font-family: var(--font-family);
+  background-color: var(--secondary-color);
+  color: var(--text-color);
   text-align: center;
 }
 
-.produto-item {
-  width: 250px;
-  padding: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+/* Geral */
+#root {
+  margin: 0 auto;
+  max-width: 1000px;
+  padding: 20px;
   text-align: left;
-  transition: transform 0.2s;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }
 
-.produto-item:hover {
-  transform: scale(1.02);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+/* Logo */
+.logo {
+  height: 8em;
+  margin: 20px auto;
+  padding: 1em;
+  cursor: pointer;
+  transition: transform 0.5s ease, filter 0.3s ease;
+}
+.logo:hover {
+  transform: rotate(5deg) scale(1.1);
+  filter: drop-shadow(0 0 20px var(--primary-color));
 }
 
-.container-imagem img {
+/* Card genérico */
+.card {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: 0 5px 15px var(--shadow-color);
+  padding: 20px;
+  margin: 20px 0;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px var(--shadow-color);
+}
+
+/* Exercícios */
+.container-exercicios {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.exercicio-item {
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: 0 5px 15px var(--shadow-color);
+  padding: 20px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  color: var(--text-muted);
+}
+.exercicio-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px var(--shadow-color);
+  color: var(--text-color);
+}
+
+.exercicio-item img {
+  border-radius: var(--border-radius);
   width: 100%;
   height: auto;
-  border-radius: 4px;
+  margin-bottom: 10px;
 }
 
-.produto-detalhes {
-  margin: 0.5rem 0;
+.container-exercicios h1 {
+  font-size: 2.5em;
+  color: var(--primary-color);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 20px;
 }
 
-.produto-nome {
-  font-size: 1.2em;
-  margin: 0.5rem 0;
-  color: #333;
-}
-
-.produto-preco {
-  font-size: 1.1em;
-  font-weight: bold;
-  color: #007b00;
-  margin: 0.5rem 0;
-}
-
-.produto-descricao {
-  font-size: 0.9em;
-  color: #666;
-  margin-bottom: 1rem;
-}
-
-.botao-comprar {
-  margin-top: auto;
-  width: 100%;
-  padding: 0.8rem;
-  background-color: #ff6600;
-  color: #fff;
-  font-weight: bold;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  text-align: center;
-}
-
-.botao-comprar:hover {
-  background-color: #be3c00;
-}
-
-.usuarios-container {
-  padding: 1rem;
-  text-align: center;
-}
-
-.titulo-usuario {
-  font-size: 60px;
-  color: #333;
-  margin-bottom: 1rem;
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.usuarios-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
+/* Usuários */
+.container-usuarios {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
 }
 
 .usuario-item {
-  width: calc(33.33% - 1rem);
-  padding: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: left;
-  transition: transform 0.2s;
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: 0 5px 15px var(--shadow-color);
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-family: 'Merriweather', serif;
 }
 
 .usuario-item:hover {
-  transform: scale(1.02);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px var(--shadow-color);
 }
 
-.usuario-nome {
-  font-size: 1.2em;
-  margin: 0.5rem 0;
-  color: #333;
+.usuario-item img {
+  width: 80px; /* Tamanho da foto */
+  height: 80px;
+  border-radius: 50%; /* Torna a imagem circular */
+  object-fit: cover; /* Garante que a imagem fique bem ajustada */
+  margin-bottom: 15px;
+  border: 2px solid var(--highlight-color);
 }
 
-@media (max-width: 1024px) {
-  .produto-item,
-  .usuario-item {
-    width: calc(50% - 1rem);
-  }
+.usuario-item h2 {
+  font-size: 1.5em;
+  margin: 10px 0 5px;
+  color: var(--text-color);
 }
 
-@media (max-width: 768px) {
-  .produto-item,
-  .usuario-item {
-    width: calc(100% - 1rem);
-  }
+.usuario-item p {
+  font-size: 1em;
+  margin: 5px 0;
+  color: var(--text-muted);
 }
 
+.usuario-item a {
+  font-size: 0.9em;
+  color: var(--highlight-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
 
+.usuario-item a:hover {
+  color: var(--text-color);
+}
 
-.produtos-container{
+/* Botões organizados */
+.usuario-item .button-container {
   display: flex;
-  gap: 20px;
+  justify-content: space-between; /* Mantém os botões afastados */
+  gap: 10px; /* Espaço entre os botões */
+  margin-top: 15px; /* Espaço superior em relação ao conteúdo */
 }
-.produto-item{
-  width: 300px;
-  border: 1px solid #f0f0f0;
-  padding: 15px 20px;
-  box-sizing: border-box;
-  box-shadow: 0px 0px 12px 2px rgb(195, 195, 195);
+
+.usuario-item .button {
+  flex: 1; /* Os botões terão tamanhos iguais */
+  text-align: center; /* Centraliza o texto dos botões */
+  padding: 10px 15px;
+  background: var(--primary-color);
+  color: var(--text-color);
+  font-weight: bold;
+  font-size: 0.9em;
+  border: none;
+  border-radius: var(--border-radius);
+  box-shadow: 0 8px 20px var(--shadow-color);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.container-imagem{
-  height: 300px;
-  overflow: hidden;
-}
-.produto-item>.container-imagem>img{
-  width: 100%;
+
+.usuario-item .button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px var(--shadow-color);
 }
