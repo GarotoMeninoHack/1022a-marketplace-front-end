@@ -1,30 +1,40 @@
 import { useParams } from "react-router-dom";
-import { FormEvent, useState, ChangeEvent, useEffect } from "react";
+import { FormEvent, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
 function AlterarProduto() {
-    const { id } = useParams()
+    const { id } = useParams();
+    const navigate = useNavigate();
+    
+    const [descricao, setDescricao] = useState("");
+    const [nome, setNome] = useState("");
+    const [imagem, setImagem] = useState("");
+    const [genero, setGenero] = useState("");
+    const [idadeMinima, setIdadeMinima] = useState("Livre");
+
     useEffect(() => {
         fetch(`https://one022a-marketplace-yvb4.onrender.com/produtos/${id}`)
             .then(resposta => resposta.json())
             .then(dados => {
-                setDescricao(dados.descricao)
-                setNome(dados.nome)
-                setImagem(dados.imagem)
-            })
-    }, [])
-    const navigate = useNavigate();
-    const [descricao, setDescricao] = useState("")
-    const [nome, setNome] = useState("")
-    const [imagem, setImagem] = useState("")
+                setDescricao(dados.descricao);
+                setNome(dados.nome);
+                setImagem(dados.imagem);
+                setGenero(dados.genero || "");
+                setIdadeMinima(dados.idadeMinima || "Livre");
+            });
+    }, [id]);
 
     function handleForm(event: FormEvent) {
         event.preventDefault();
-        console.log("Tentei cadastrar produtos");
+
         const produto = {
-            nome: nome,
-            descricao: descricao,
-            imagem: imagem
-        }
+            nome,
+            descricao,
+            imagem,
+            genero,
+            idadeMinima
+        };
+
         fetch(`https://one022a-marketplace-yvb4.onrender.com/produtos/${id}`, {
             method: "PUT",
             headers: {
@@ -33,22 +43,12 @@ function AlterarProduto() {
             body: JSON.stringify(produto)
         }).then(response => {
             if (response.status === 200) {
-                alert("Produto alterado com sucesso")
-                navigate("/")
+                alert("Produto alterado com sucesso");
+                navigate("/");
+            } else {
+                alert("Erro ao alterar produto");
             }
-            else {
-                alert("Erro ao alterar produto")
-            }
-        })
-    }
-    function handleDescricao(event: ChangeEvent<HTMLInputElement>) {
-        setDescricao(event.target.value)
-    }
-    function handleNome(event: ChangeEvent<HTMLInputElement>) {
-        setNome(event.target.value)
-    }
-    function handleImagem(event: ChangeEvent<HTMLInputElement>) {
-        setImagem(event.target.value)
+        });
     }
 
     return (
@@ -57,21 +57,36 @@ function AlterarProduto() {
                 <div>Alterar Produto {id}</div>
                 <form onSubmit={handleForm}>
                     <div>
-                        <label htmlFor="id">id</label>
-                        <input type="text" name="id" value={id} readOnly />
+                        <label htmlFor="nome">Nome</label>
+                        <input type="text" name="nome" value={nome} onChange={(e) => setNome(e.target.value)} />
                     </div>
                     <div>
-                        <label htmlFor="nome">nome</label>
-                        <input type="text" name="nome" value={nome} onChange={handleNome} />
+                        <label htmlFor="descricao">Descrição</label>
+                        <input type="text" name="descricao" value={descricao} onChange={(e) => setDescricao(e.target.value)} />
                     </div>
                     <div>
-                        <label htmlFor="descricao">descricao</label>
-                        <input type="text" name="descricao" value={descricao} onChange={handleDescricao} />
+                        <label htmlFor="imagem">Imagem</label>
+                        <input type="text" name="imagem" value={imagem} onChange={(e) => setImagem(e.target.value)} />
+                        {imagem && <img className="imagem-previa-upload" src={imagem} alt="Prévia da imagem" />}
                     </div>
                     <div>
-                        <label htmlFor="imagem">imagem</label>
-                        <input type="text" name="imagem" value={imagem} onChange={handleImagem} />
-                        {imagem && <img className="imagem-previa-upload" src={imagem} />}
+                        <label htmlFor="genero">Gênero</label>
+                        <select name="genero" value={genero} onChange={(e) => setGenero(e.target.value)}>
+                            <option value="">Selecione um gênero</option>
+                            <option value="Shonen">Shonen</option>
+                            <option value="Shojo">Shojo</option>
+                            <option value="Seinen">Seinen</option>
+                            <option value="Josei">Josei</option>
+                            <option value="Isekai">Isekai</option>
+                            <option value="Slice of Life">Slice of Life</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label htmlFor="idadeMinima">Idade Mínima</label>
+                        <select name="idadeMinima" value={idadeMinima} onChange={(e) => setIdadeMinima(e.target.value)}>
+                            <option value="Livre">Livre</option>
+                            <option value="Adulto">Adulto</option>
+                        </select>
                     </div>
                     <div>
                         <input type="submit" value="Cadastrar" />
@@ -79,7 +94,7 @@ function AlterarProduto() {
                 </form>
             </main>
         </>
-    )
+    );
 }
 
 export default AlterarProduto;

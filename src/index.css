@@ -22,7 +22,7 @@ body {
 
 main {
   width: 90%;
-  max-width: 1500px;
+  max-width: 1200px;
   margin: 20px auto;
   background: var(--form-bg);
   border-radius: var(--border-radius);
@@ -151,3 +151,4 @@ form button:focus {
     width: 100%;
   }
 }
+
